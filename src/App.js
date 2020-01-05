@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import CardList from './components/cardList/cardList';
+import Search from './components/search/search';
 
 class App extends Component{
   
@@ -37,25 +39,8 @@ class App extends Component{
     return (
       <div className="App">
         <h1 className="monsters-title">{mainTitle}</h1>
-        <div className="search-wrapper">
-          <input type="search" className="search" onChange={this.ChangeHandler} placeholder="Search Monsters..." />
-        </div>
-        <div className="monsters-wrapper">
-            {
-              filteredMonsters.map( users => {
-                return(
-                  <div className="monsters" key={users.username}>
-                    <img
-                      alt='monster'
-                      src={`https://robohash.org/${users.id}?set=set2&size=180x180`}
-                    />
-                    <h2>{ users.name }</h2>
-                    <p>{ users.email }</p>
-                  </div>
-                )
-              } )
-            }
-        </div>
+        <Search ChangeHandler={this.ChangeHandler}/>
+        <CardList filteredMonsters={filteredMonsters} />
       </div>
     );
   }
